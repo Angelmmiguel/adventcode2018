@@ -1,0 +1,6 @@
+[package]
+name = "letters"
+version = "0.1.0"
+authors = ["Angel M <angel@laux.es>"]
+
+[dependencies]

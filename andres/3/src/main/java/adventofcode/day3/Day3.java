@@ -69,9 +69,11 @@ public class Day3 {
 
         System.out.println("Square inches of fabric are within two or more claims:" + counts.get());
 
+        // PART 2
+
         claims.forEach(
                 claim -> {
-                    boolean overlap = false;
+                    var overlap = false;
                     for (int i = 0; i < claim.areaX; i++) {
                         for (int j = 0; j < claim.areaY; j++) {
                             if (fabric[claim.startX + i][claim.startY + j] != 1) {

@@ -15,8 +15,8 @@ public class Day3 {
 
         var fabric = new int[SIZE][SIZE];
 
-        for (int i = 0; i < SIZE; i++) {
-            for (int j = 0; j < SIZE; j++) {
+        for (var i = 0; i < SIZE; i++) {
+            for (var j = 0; j < SIZE; j++) {
                 fabric[i][j] = 0;
             }
         }
@@ -51,8 +51,8 @@ public class Day3 {
                 .collect(Collectors.toList());
 
         claims.forEach(claim -> {
-            for (int i = 0; i < claim.areaX; i++) {
-                for (int j = 0; j < claim.areaY; j++) {
+            for (var i = 0; i < claim.areaX; i++) {
+                for (var j = 0; j < claim.areaY; j++) {
                     if (fabric[claim.startX + i][claim.startY + j] == 0) {
                         fabric[claim.startX + i][claim.startY + j] = 1;
                     } else {
@@ -74,8 +74,8 @@ public class Day3 {
         claims.forEach(
                 claim -> {
                     var overlap = false;
-                    for (int i = 0; i < claim.areaX; i++) {
-                        for (int j = 0; j < claim.areaY; j++) {
+                    for (var i = 0; i < claim.areaX; i++) {
+                        for (var j = 0; j < claim.areaY; j++) {
                             if (fabric[claim.startX + i][claim.startY + j] != 1) {
                                 overlap = true;
                             }

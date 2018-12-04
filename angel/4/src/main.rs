@@ -11,8 +11,8 @@ fn main() {
   let content = BufReader::new(&file);
 
   // Read all lines
-  let mut lines: Vec<_> = content.lines().map(|line| { line.unwrap() }).collect::<Vec<String>>();
-  lines = lines.sort();
+  let mut lines: Vec<String> = content.lines().map(|line| { line.unwrap() }).collect();
+  lines.sort();
 
   for l in lines.iter() {
     println!("{}", l);

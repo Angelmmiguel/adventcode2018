@@ -1,7 +1,5 @@
 #!/usr/bin/env ruby
 
-require 'pry'
-
 GUARD_REGEX = /Guard #(?<guard_id>\d+)/
 MINUTE_REGEX = /\[\w+-\w+-\w+\s\w+:(?<minute>\w+)/
 

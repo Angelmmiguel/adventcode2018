@@ -49,3 +49,35 @@ object Day6_1 extends DayApp {
 
   runDay("Day 6 problem 1:", "input6.txt")
 }
+
+
+object Day6_2 extends DayApp {
+
+  override def dayAlgorithm(inputLines: Iterator[String]): String = {
+    val coordinatesString = inputLines.toList
+    val coordinatesTuples = coordinatesString.map(s => (s.split(", ")(0).toInt, s.split(", ")(1).toInt))
+    val minX: Int = coordinatesTuples.minBy(_._1)._1
+    val minY: Int = coordinatesTuples.minBy(_._2)._2
+    val maxX: Int = coordinatesTuples.maxBy(_._1)._1
+    val maxY: Int = coordinatesTuples.maxBy(_._2)._2
+
+    var size = 0
+    for (coordX <- minX until maxX + 1) {
+      for (coordY <- minY until maxY + 1) {
+        val currentPoint = (coordX, coordY)
+        val allManhattanDistancesLength = coordinatesTuples.map(v => manhattanDistance(currentPoint, v)).sum
+        if (allManhattanDistancesLength < 10000) {
+          size += 1
+        }
+      }
+    }
+
+    size.toString
+  }
+
+  def manhattanDistance(tuple1: (Int, Int), tuple2: (Int, Int)): Int = {
+    Math.abs(tuple1._1 - tuple2._1) + Math.abs(tuple1._2 - tuple2._2)
+  }
+
+  runDay("Day 6 problem 2:", "input6.txt")
+}

@@ -6,8 +6,8 @@ target/
 .DS_Store
 
 # Pcasares
-pablocasares/1/.idea
-pablocasares/1/target/
-pablocasares/1/project/
-pablocasares/1/.DS_Store
+.idea
+target/
+project/
+.DS_Store
 

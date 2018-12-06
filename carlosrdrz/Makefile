@@ -10,4 +10,4 @@ all:  $(patsubst %,./%/main.run,$(PARTS))
 .PHONY: clean
 
 clean:
-	rm -f ./*/main.o
+	rm -f ./*/main.run

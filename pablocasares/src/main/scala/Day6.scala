@@ -10,7 +10,6 @@ object Day6_1 extends DayApp {
     val maxX: Int = coordinatesTuples.maxBy(_._1)._1
     val maxY: Int = coordinatesTuples.maxBy(_._2)._2
 
-
     val proposedGrid = Array.ofDim[(Int, Int)](maxX + 1, maxY + 1)
 
     for (coordX <- minX until maxX + 1) {

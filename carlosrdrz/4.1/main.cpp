@@ -107,5 +107,9 @@ int main(int argc, char* argv[]) {
 
   std::cout << "Result " << guardSleepingTheMost * minuteWhereMostSlept << std::endl;
 
+  for (auto g : guardToMinutes) {
+    delete g.second;
+  }
+
   return EXIT_SUCCESS;
 }

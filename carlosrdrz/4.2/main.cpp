@@ -96,5 +96,9 @@ int main(int argc, char* argv[]) {
 
   std::cout << "Result " << guardMostAsleep * minuteMostAsleep << std::endl;
 
+  for (auto g : guardToMinutes) {
+    delete g.second;
+  }
+
   return EXIT_SUCCESS;
 }

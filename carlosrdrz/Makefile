@@ -1,11 +1,13 @@
-FLAGS=-Wall -std=gnu++11
+CC=g++
+FLAGS=-Wall -g -pedantic -std=gnu++11
+PARTS=1.1 1.2 2.1 2.2 3.1 3.2 4.1 4.2 5.1 5.2
 
-all: one two
+all:  $(patsubst %,./%/main.run,$(PARTS))
 
-one: ./1.1/freq.cpp ./1.2/freq.cpp
-	g++ ${FLAGS} ./1.1/freq.cpp -o ./1.1/one
-	g++ ${FLAGS} ./1.2/freq.cpp -o ./1.2/one
+%.run: %.cpp
+	$(CC) -o $@ $< $(FLAGS)
 
-two: ./2.1/ids.cpp ./2.2/ids.cpp
-	g++ ${FLAGS} ./2.1/ids.cpp -o ./2.1/ids
-	g++ ${FLAGS} ./2.2/ids.cpp -o ./2.2/ids
+.PHONY: clean
+
+clean:
+	rm -f ./*/main.run

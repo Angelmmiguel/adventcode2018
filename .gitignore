@@ -4,3 +4,12 @@
 target/
 *.iml
 .DS_Store
+
+# Pcasares
+.idea
+target/
+project/
+.DS_Store
+
+# carlosrdrz
+carlosrdrz/*/main.run*

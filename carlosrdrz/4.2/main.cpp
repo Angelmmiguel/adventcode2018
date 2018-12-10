@@ -46,7 +46,6 @@ int main(int argc, char* argv[]) {
   std::ifstream fs(argv[1], std::ifstream::in);
   std::vector<entry> entries;
   std::map<int, int*> guardToMinutes;
-  std::map<int, int> guardToMinutesTotal;
 
   std::string line;
   while (std::getline(fs, line)) {
@@ -65,8 +64,6 @@ int main(int argc, char* argv[]) {
     if (e.action == "falls") {
       minuteSleeping = e.min;
     } else if (e.action == "wakes") {
-      if (guardToMinutesTotal.count(currentGuard) == 0) guardToMinutesTotal[currentGuard] = 0;
-
       if (guardToMinutes.count(currentGuard) == 0) {
         guardToMinutes[currentGuard] = new int[60];
         for (int i = 0; i < 60; i++) guardToMinutes[currentGuard][i] = 0;
@@ -74,7 +71,6 @@ int main(int argc, char* argv[]) {
 
       for (int i = minuteSleeping; i < e.min; i++) {
         guardToMinutes[currentGuard][i]++;
-        guardToMinutesTotal[currentGuard]++;
       }
     } else {
       std::smatch match;
@@ -84,28 +80,21 @@ int main(int argc, char* argv[]) {
     }
   }
 
-  int guardSleepingTheMost = -1;
-  int guardSleepingTheMostTotalMinutes = -1;
-  for (auto g : guardToMinutesTotal) {
-    if (g.second > guardSleepingTheMostTotalMinutes) {
-      guardSleepingTheMostTotalMinutes = g.second;
-      guardSleepingTheMost = g.first;
+  int guardMostAsleep = -1;
+  int minuteMostAsleep = -1;
+  int minutesAsleep = -1;
+  for (auto g : guardToMinutes) {
+    for (int i = 0; i < 60; i++) {
+      auto m = g.second[i];
+      if (m > minutesAsleep) {
+        minutesAsleep = m;
+        minuteMostAsleep = i;
+        guardMostAsleep = g.first;
+      }
     }
   }
 
-
-  int minuteWhereMostSlept = -1;
-  int minuteSleptMost = -1;
-  for (int i = 0; i < 60; i++) {
-    auto g = guardToMinutes[guardSleepingTheMost][i];
-    if (g > minuteSleptMost) {
-      minuteSleptMost = g;
-      minuteWhereMostSlept = i;
-      i++;
-    }
-  }
-
-  std::cout << "Result " << guardSleepingTheMost * minuteWhereMostSlept << std::endl;
+  std::cout << "Result " << guardMostAsleep * minuteMostAsleep << std::endl;
 
   for (auto g : guardToMinutes) {
     delete g.second;

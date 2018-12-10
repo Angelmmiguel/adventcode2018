@@ -78,7 +78,6 @@ object Day7_1 extends DayApp {
         currentJob.child.foreach(child => child.parents -= currentJob)
       }
     }
-
   }
 
   runDay("Day 7 problem 1:", "input7.txt")
@@ -177,7 +176,6 @@ object Day7_2 extends DayApp {
       }
       time
     }
-
   }
 
   runDay("Day 7 problem 2:", "input7.txt")
